@@ -64,6 +64,7 @@ class MoodEntryViewSet(viewsets.ModelViewSet):
 class CrisisResourceViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CrisisResource.objects.all()
     serializer_class = CrisisResourceSerializer
+    permission_classes = [permissions.AllowAny]
 
 
 # SupportPost viewset with toggle upvote, reply, and permission controls
