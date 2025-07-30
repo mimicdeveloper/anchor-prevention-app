@@ -1,10 +1,6 @@
-/* Import Poppins font (optional if you imported it in index.html) */
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap'); */
-
-/* Apply Poppins globally */
-/* Apply Poppins globally */
+/* Apply fallback system fonts globally */
 body, .App {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   background-color: #f0f4f8;
   color: #222;
   margin: 0;
@@ -13,7 +9,7 @@ body, .App {
 
 /* Style all buttons */
 button {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 600;
   font-size: 1rem;
   color: #fff;
@@ -37,7 +33,6 @@ button:active {
   box-shadow: 0 3px 6px rgba(31, 109, 109, 0.3);
 }
 
-
 /* Style links wrapping buttons to remove default link styles */
 nav a {
   text-decoration: none;
@@ -56,14 +51,14 @@ nav {
   margin-top: 10px;
 }
 
-/* You can also style headings */
+/* Style headings with fallback fonts */
 h1, h2, h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 600;
   color: #0077ff;
 }
 
-
+/* Animation styles */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
