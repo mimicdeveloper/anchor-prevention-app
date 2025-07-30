@@ -8,6 +8,8 @@ import Forum from './components/Forum';
 import MoodTracker from './components/MoodTracker';
 import CrisisResources from './components/CrisisResources';
 import Footer from './components/Footer';
+import './App.css';
+
 
 function App() {
   return (
