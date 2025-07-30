@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import api from '../api'; // adjust path if needed
+import api from '../api/api';
+ // adjust path if needed
 
 function Register() {
   const [username, setUsername] = useState('');

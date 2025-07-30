@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'https://anchor-prevention-app.onrender.com/api';
-// your Django backend API
+  // your Django backend API
 
 // Create axios instance with base URL
 const api = axios.create({

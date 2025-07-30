@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api';  // adjust path if needed
+import api from '../api/api';  // adjust path if needed
 
 function MoodTracker() {
   const [moodEntries, setMoodEntries] = useState([]);

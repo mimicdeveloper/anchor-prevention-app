@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import api from '../api';  // adjust path if needed
+import api from '../api/api';  // adjust path if needed
 
 function CrisisResources() {
   const [resources, setResources] = useState([]);

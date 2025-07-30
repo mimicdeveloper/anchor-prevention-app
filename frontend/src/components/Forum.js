@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api'; // adjust the path if needed
+import api from '../api/api'; // adjust the path if needed
 
 function Forum() {
   const [posts, setPosts] = useState([]);
