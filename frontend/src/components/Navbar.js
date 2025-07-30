@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <header style={{ textAlign: 'center', margin: '20px 0' }}>
       <img
-        src="/anchor-logo.png"
+        src={`${process.env.PUBLIC_URL}/anchor-logo.png`}
         alt="Anchor Prevention Logo"
         style={{ maxHeight: '250px', marginBottom: '10px' }}
       />
