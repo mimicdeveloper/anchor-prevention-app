@@ -93,3 +93,49 @@ h1, h2, h3 {
     transform: rotate(360deg);
   }
 }
+
+/* Mobile styles for screens up to 600px wide */
+@media (max-width: 600px) {
+  body, .App {
+    padding: 12px 16px;
+    font-size: 14px; /* Slightly smaller font for readability */
+  }
+
+  header {
+    margin: 15px 0;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  nav a {
+    width: auto; /* reset to auto so links don’t stretch */
+  }
+
+  button {
+    width: 80%;            /* smaller width instead of full */
+    max-width: 300px;      /* caps max width so buttons don’t get too wide */
+    margin: 0 auto;        /* center horizontally */
+    font-size: 1.1rem;
+    padding: 14px 0;
+    box-shadow: 0 3px 6px rgba(41, 145, 145, 0.4);
+    display: block;        /* so margin auto centers it */
+  }
+
+  button:hover {
+    box-shadow: 0 5px 10px rgba(31, 109, 109, 0.6);
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .App-header {
+    font-size: calc(12px + 3vmin);
+    padding: 20px 0;
+  }
+}
