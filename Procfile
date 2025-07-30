@@ -1,0 +1,1 @@
+web: gunicorn prevention_app.wsgi:application
