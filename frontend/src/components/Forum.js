@@ -34,10 +34,8 @@ function Forum() {
         const response = await api.get('/support-posts/');
         setPosts(response.data);
 
-        // Initialize votes and upvotes for posts
         const initialVotes = {};
         const initialUpvoted = {};
-        // Initialize votes and upvotes for replies
         const initialReplyVotes = {};
         const initialReplyUpvoted = {};
         const initialReplies = {};
@@ -218,8 +216,16 @@ function Forum() {
         }}
       >
         <h3 style={{ color: '#299191', marginBottom: '16px' }}>All Posts</h3>
+
         {posts.length === 0 ? (
-          <p>No posts yet. Be the first to share something!</p>
+          <p style={{
+            textAlign: 'center',
+            color: '#888',
+            fontStyle: 'italic',
+            marginTop: '20px'
+          }}>
+            No posts yet. Be the first to share something!
+          </p>
         ) : (
           posts.map((post) => (
             <div
