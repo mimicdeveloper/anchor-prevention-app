@@ -1,0 +1,20 @@
+# Ignore virtual environment
+env/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Django secrets
+.env
+
+# VSCode and editor settings
+.vscode/
+.idea/
+
+# SQLite DB (optional)
+db.sqlite3
+
+# Migrations (optional if you don’t track them)
+**/migrations/*.py
+**/migrations/__pycache__/
