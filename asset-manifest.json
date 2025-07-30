@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/anchor-prevention-app/static/css/main.6f346fbc.css",
-    "main.js": "/anchor-prevention-app/static/js/main.97df4833.js",
+    "main.js": "/anchor-prevention-app/static/js/main.c0b9a70e.js",
     "static/js/453.8ab44547.chunk.js": "/anchor-prevention-app/static/js/453.8ab44547.chunk.js",
     "index.html": "/anchor-prevention-app/index.html",
     "main.6f346fbc.css.map": "/anchor-prevention-app/static/css/main.6f346fbc.css.map",
-    "main.97df4833.js.map": "/anchor-prevention-app/static/js/main.97df4833.js.map",
+    "main.c0b9a70e.js.map": "/anchor-prevention-app/static/js/main.c0b9a70e.js.map",
     "453.8ab44547.chunk.js.map": "/anchor-prevention-app/static/js/453.8ab44547.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6f346fbc.css",
-    "static/js/main.97df4833.js"
+    "static/js/main.c0b9a70e.js"
   ]
 }
