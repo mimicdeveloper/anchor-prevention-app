@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';  // adjust path if needed
 
 function MoodTracker() {
   const [moodEntries, setMoodEntries] = useState([]);
@@ -7,19 +7,10 @@ function MoodTracker() {
   const [mood, setMood] = useState('neutral');
   const [error, setError] = useState(null);
 
-  const getAuthConfig = () => ({
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    },
-  });
-
   useEffect(() => {
     const fetchMoods = async () => {
       try {
-        const response = await axios.get(
-          'http://localhost:8000/api/mood-entries/',
-          getAuthConfig()
-        );
+        const response = await api.get('/mood-entries/');
         setMoodEntries(response.data);
         setError(null);
       } catch {
@@ -33,17 +24,10 @@ function MoodTracker() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        'http://localhost:8000/api/mood-entries/',
-        { note, mood },
-        getAuthConfig()
-      );
+      await api.post('/mood-entries/', { note, mood });
       setNote('');
       setMood('neutral');
-      const response = await axios.get(
-        'http://localhost:8000/api/mood-entries/',
-        getAuthConfig()
-      );
+      const response = await api.get('/mood-entries/');
       setMoodEntries(response.data);
       setError(null);
     } catch {
@@ -76,30 +60,30 @@ function MoodTracker() {
 
       {/* Sentiment key explanation */}
       <div
-  style={{
-    backgroundColor: '#e0f7f7',
-    borderRadius: '6px',
-    padding: '12px 20px',
-    margin: '0 auto 25px auto',
-    maxWidth: '500px',
-    fontSize: '.9rem',
-    color: '#145454',
-    border: '1.5px solid #299191',
-    lineHeight: 1.6,
-    fontWeight: '500',
-    letterSpacing: '0.02em',
-  }}
->
-  <strong style={{ display: 'block', marginBottom: '8px' }}>Sentiment Key:</strong>
-  <p style={{ margin: '4px 0' }}>
-    <span style={{ whiteSpace: 'nowrap' }}>
-      Sentiment scores range from <em>-1</em> (very negative) to <em>+1</em> (very positive).
-    </span>
-  </p>
-  <p style={{ margin: '4px 0' }}>
-    A score near <em>0</em> indicates a neutral sentiment.
-  </p>
-</div>
+        style={{
+          backgroundColor: '#e0f7f7',
+          borderRadius: '6px',
+          padding: '12px 20px',
+          margin: '0 auto 25px auto',
+          maxWidth: '500px',
+          fontSize: '.9rem',
+          color: '#145454',
+          border: '1.5px solid #299191',
+          lineHeight: 1.6,
+          fontWeight: '500',
+          letterSpacing: '0.02em',
+        }}
+      >
+        <strong style={{ display: 'block', marginBottom: '8px' }}>Sentiment Key:</strong>
+        <p style={{ margin: '4px 0' }}>
+          <span style={{ whiteSpace: 'nowrap' }}>
+            Sentiment scores range from <em>-1</em> (very negative) to <em>+1</em> (very positive).
+          </span>
+        </p>
+        <p style={{ margin: '4px 0' }}>
+          A score near <em>0</em> indicates a neutral sentiment.
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit}>
         <label style={{ display: 'block', marginBottom: '10px' }}>

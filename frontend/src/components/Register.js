@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api'; // adjust path if needed
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -11,10 +11,10 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/register/', {
+      await api.post('/register/', {
         username,
         password,
-        email
+        email,
       });
       setSuccess('User registered successfully!');
       setError(null);
@@ -51,14 +51,14 @@ function Register() {
           backgroundColor: '#f0fafa',
           padding: '24px',
           borderRadius: '8px',
-          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)'
+          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
         }}
       >
         <input
           type="text"
           placeholder="Username"
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
           required
           style={{
             padding: '10px',
@@ -71,7 +71,7 @@ function Register() {
           type="email"
           placeholder="Email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           required
           style={{
             padding: '10px',
@@ -84,7 +84,7 @@ function Register() {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           required
           style={{
             padding: '10px',
@@ -106,17 +106,13 @@ function Register() {
             padding: '10px 20px',
             cursor: 'pointer',
             transition: 'background 0.3s ease',
-            boxShadow: '0 4px 8px rgba(41, 145, 145, 0.3)'
+            boxShadow: '0 4px 8px rgba(41, 145, 145, 0.3)',
           }}
         >
           Register
         </button>
-        {error && (
-          <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>
-        )}
-        {success && (
-          <p style={{ color: 'green', textAlign: 'center' }}>{success}</p>
-        )}
+        {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+        {success && <p style={{ color: 'green', textAlign: 'center' }}>{success}</p>}
       </form>
     </div>
   );

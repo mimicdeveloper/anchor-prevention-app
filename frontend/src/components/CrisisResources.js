@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';  // adjust path if needed
 
 function CrisisResources() {
   const [resources, setResources] = useState([]);
@@ -8,7 +8,7 @@ function CrisisResources() {
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/crisis-resources/');
+        const response = await api.get('/crisis-resources/');
         setResources(response.data);
       } catch (err) {
         setError('Failed to load crisis resources.');

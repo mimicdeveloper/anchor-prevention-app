@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api'; // adjust the path if needed
 
 function Forum() {
   const [posts, setPosts] = useState([]);
@@ -11,15 +11,6 @@ function Forum() {
   const [replyVoteCounts, setReplyVoteCounts] = useState({});
   const [replyUserHasUpvoted, setReplyUserHasUpvoted] = useState({});
   const [currentUserId, setCurrentUserId] = useState(null);
-
-  const getAuthConfig = () => {
-    const token = localStorage.getItem('access_token');
-    return {
-      headers: {
-        Authorization: token ? `Bearer ${token}` : '',
-      },
-    };
-  };
 
   const getUserIdFromToken = () => {
     const token = localStorage.getItem('access_token');
@@ -40,8 +31,7 @@ function Forum() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const config = getAuthConfig();
-        const response = await axios.get('http://localhost:8000/api/support-posts/', config);
+        const response = await api.get('/support-posts/');
         setPosts(response.data);
 
         // Initialize votes and upvotes for posts
@@ -83,10 +73,9 @@ function Forum() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const config = getAuthConfig();
-      await axios.post('http://localhost:8000/api/support-posts/', { content: newPost }, config);
+      await api.post('/support-posts/', { content: newPost });
       setNewPost('');
-      const response = await axios.get('http://localhost:8000/api/support-posts/', config);
+      const response = await api.get('/support-posts/');
       setPosts(response.data);
       setError(null);
     } catch {
@@ -98,9 +87,8 @@ function Forum() {
     const content = replies[postId];
     if (!content.trim()) return;
     try {
-      const config = getAuthConfig();
-      await axios.post(`http://localhost:8000/api/support-posts/${postId}/reply/`, { content }, config);
-      const response = await axios.get('http://localhost:8000/api/support-posts/', config);
+      await api.post(`/support-posts/${postId}/reply/`, { content });
+      const response = await api.get('/support-posts/');
       setPosts(response.data);
       setReplies(prev => ({ ...prev, [postId]: '' }));
       setError(null);
@@ -111,9 +99,7 @@ function Forum() {
 
   const handleUpvote = async (postId) => {
     try {
-      const config = getAuthConfig();
-      const response = await axios.post(`http://localhost:8000/api/support-posts/${postId}/upvote/`, {}, config);
-
+      const response = await api.post(`/support-posts/${postId}/upvote/`, {});
       const { votes, user_has_upvoted } = response.data;
 
       setVoteCounts(prev => ({ ...prev, [postId]: votes }));
@@ -126,13 +112,7 @@ function Forum() {
 
   const handleReplyUpvote = async (postId, replyId) => {
     try {
-      const config = getAuthConfig();
-      const response = await axios.post(
-        `http://localhost:8000/api/support-posts/${postId}/reply/${replyId}/upvote/`,
-        {},
-        config
-      );
-
+      const response = await api.post(`/support-posts/${postId}/reply/${replyId}/upvote/`, {});
       const { votes, user_has_upvoted } = response.data;
 
       setReplyVoteCounts(prev => ({ ...prev, [replyId]: votes }));
@@ -145,9 +125,8 @@ function Forum() {
 
   const handleDeletePost = async (postId) => {
     try {
-      const config = getAuthConfig();
-      await axios.delete(`http://localhost:8000/api/support-posts/${postId}/`, config);
-      const response = await axios.get('http://localhost:8000/api/support-posts/', config);
+      await api.delete(`/support-posts/${postId}/`);
+      const response = await api.get('/support-posts/');
       setPosts(response.data);
       setError(null);
     } catch {
@@ -157,9 +136,8 @@ function Forum() {
 
   const handleDeleteReply = async (postId, replyId) => {
     try {
-      const config = getAuthConfig();
-      await axios.delete(`http://localhost:8000/api/support-posts/${postId}/reply/${replyId}/`, config);
-      const response = await axios.get('http://localhost:8000/api/support-posts/', config);
+      await api.delete(`/support-posts/${postId}/reply/${replyId}/`);
+      const response = await api.get('/support-posts/');
       setPosts(response.data);
       setError(null);
     } catch {
